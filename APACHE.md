@@ -141,7 +141,7 @@ Pri inštaláciách, ktoré nemajú verejnú ip adresu, pri používaní load ba
 
 ![obrazok](https://adolfomaltez.files.wordpress.com/2011/05/apache-reverse-proxy.png)
 
-> **mod_proxy** je potrebne aktivovať `sudo a2enmod proxy`
+> **mod_proxy** je potrebne aktivovať `sudo a2enmod proxy` a `sudo a2enmod proxy_http`
 
 Nastavenie proxy je podobné ako pri virtualhost. pre poxy nepotrebujeme nastavenia pre `<Directory>` pretože nastavíme proxy presmerovania. Subor pre virtualhost vyzera nasledovne
 
@@ -163,6 +163,25 @@ Listen 80
     ProxyPassReverse / http://www.upjs.sk/
 
 </VirtualHost>
+```
+
+## Rewrite
+
+Moderné webstránky dnes už používajú rôzne atraktívne URL adresy k obsahu. V apache serveri pomocou modulu rewrite vieme ľubovoľne meniť obsah adresy a prepisovať ho tak aby sme sa dostali ku žiadanému obsahu.
+
+> **mod_rewrite** je potrebne aktivovať `sudo a2enmod rewrite`
+
+Vo virtualhost vyuzivame nasledovne nastavenia pre proxy
+
+- **RewriteEngine on** - Nastavíme zapnutie modu rewrite pre aktualny virtualhost
+- **RewriteBase "/directory/"** - Priecinok od ktoreho je povoleny rewrite
+- **RewriteRule "/widget/(.*)$" "http://product.example.com/widget/$1" [FLAGS]** - Rewrite pravidla
+- [ďalšie pravidlá v oficiálnej dokumentácíí](https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html)
+
+Ukážka použitia pre zmennu nacitavaneho suboru index.html na main.html
+```
+RewriteEngine on
+RewriteRule "^index.html$" "main.html" [L]
 ```
 
 ## Úlohy
