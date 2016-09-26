@@ -186,7 +186,7 @@ RewriteRule "^index.html$" "main.html" [L]
 
 ## Úlohy
 
-### 1. POMOCOU MOD REWRITE A MOD_PROXY UROBTE VIRTUALHOST KTORY BUDE CEZ VAS POCITAC PRESMEROVAVAT OBSAH LUBOVOLNEHO WEBU
+### 1. Pomocou mod rewrite a mod_proxy urobte virtualhost ktory bude cez linuxovy server presmerovavat obsah zadaneho webu za adresou
 
 Príklad http://192.168.56.10/www.upjs.sk/ zobrazí stránku nasej skoly
 
