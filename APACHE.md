@@ -95,6 +95,75 @@ Pridajme na koniec súboru takéto nastavenie (kde za ip adresu zadajte ip-cku v
 192.168.56.101	pekarcik.apache
 ```
 
+## Apache VirtualHost
+
+VirtualHost používame ak jeden počítač má pridelených viac doménových mien. VirtualHost vieme nastaviť tak aby každé doménové meno zobrazilo iný obsah. Okrem domenovych mien mozeme virtualhost použiť aj na rozne porty. Často sa na serveroch používa virtualhost pre port 443, ktorý predstavuje šifrované spojenie so serverom a teda má odlišnú konfiguráciu ako bežný virtualhost pre port 80.
+
+> Pripravte si vo svojom domovskom priečinku */home/apache* 2 priečinky. 1 pre domenove meno *patrik.apache* a druhy *pekarcik.apache*. Obsahom priečinku nech su 2 rozne subory index.html
+
+Vytvoríme konfiguračný súbor v priečinku `/etc/apahce2/sites-available` s nazvom patrik-apache.conf. A vložíme do neho tento obsah (s vysvetlivkami)
+
+```
+# Server nech počúva na tomto porte
+Listen 80
+#Vytvoríme virtualhost ktorý počúva na všetkých sieťových interfacoch
+<VirtualHost *:80>
+    # domenove meno/á na ktoré ma server zobrazit obsah tohto virtualhosta
+    ServerName patrik.apache
+    ServerAlias patrik.apache
+    #ServerAlias dalsi.alias
+    
+    # Kontakt na administrátora virtualhostu
+    ServerAdmin patrik.pekarcik@upjs.sk
+    
+    DocumentRoot "/home/apache/patrik-apache"
+    
+    # Nastavenie priečinku aby bol pre užívateľov prístupný
+    <Directory "/home/apache/patrik-apache">
+        # Povolenie podla apache 2.2
+        Order deny,allow
+        Allow from all
+        # Povolenie podla apache 2.4
+        Require all granted
+        # Povolenie upravovacích skritov .htaccess
+        AllowOverride All
+        # Rozsierene moznosti priecinka (-Indexes - listovanie suborov v nom je zakazane)
+        Options -Indexes
+    </Directory>
+</VirtualHost>
+```
+
+> Po tomto nastavení už samostatne vytvorte virtualhost pre druhy priecinok
+
+## Proxy
+
+Pri inštaláciách, ktoré nemajú verejnú ip adresu, pri používaní load balancingu alebo na zabezpecenie aplikačných serverov sa používa proxy. 
+
+![obrazok](https://adolfomaltez.files.wordpress.com/2011/05/apache-reverse-proxy.png)
+
+> **mod_proxy** je potrebne aktivovať `sudo a2enmod proxy`
+
+Nastavenie proxy je podobné ako pri virtualhost. pre poxy nepotrebujeme nastavenia pre `<Directory>` pretože nastavíme proxy presmerovania. Subor pre virtualhost vyzera nasledovne
+
+```
+# Server nech počúva na tomto porte
+Listen 80
+#Vytvoríme virtualhost ktorý počúva na všetkých sieťových interfacoch
+<VirtualHost *:80>
+    # domenove meno/á na ktoré ma server zobrazit obsah tohto virtualhosta
+    ServerName patrik.apache
+    ServerAlias patrik.apache
+    #ServerAlias dalsi.alias
+    
+    # Kontakt na administrátora virtualhostu
+    ServerAdmin patrik.pekarcik@upjs.sk
+    
+    ProxyPreserveHost On
+    ProxyPass / http://www.upjs.sk/
+    ProxyPassReverse / http://www.upjs.sk/
+
+</VirtualHost>
+```
 
 ## Úlohy
 
@@ -102,6 +171,6 @@ Pridajme na koniec súboru takéto nastavenie (kde za ip adresu zadajte ip-cku v
 
 Príklad http://192.168.56.10/www.upjs.sk/ zobrazí stránku nasej skoly
 
-### 2. NASTAVTE VIRTUALHOST NA PORTE 8080 ZOBRAZUJUCI OBSAH SKOLSKEJ OSOBNEJ STRANKY
+### 2. Nastavte Virtualhost na porte 8080 a zobrazte tam pomocou proxy obsah študentskej webstránky.
 
 Ak nemate osobnu stranku zvolte stranku spoluziaka.
