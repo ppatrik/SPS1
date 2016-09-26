@@ -171,6 +171,6 @@ Listen 80
 
 Príklad http://192.168.56.10/www.upjs.sk/ zobrazí stránku nasej skoly
 
-### 2. Nastavte Virtualhost na porte 8080 a zobrazte tam pomocou proxy obsah študentskej webstránky.
+### 2. Nastavte Virtualhost na porte 8080 a zobrazte tam pomocou proxy obsah svojej študentskej webstránky.
 
 Ak nemate osobnu stranku zvolte stranku spoluziaka.
