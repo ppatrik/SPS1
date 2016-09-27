@@ -188,10 +188,17 @@ RewriteRule "^index.html$" "main.html" [L]
 
 ## Úlohy
 
-### 1. Pomocou mod rewrite a mod_proxy urobte virtualhost ktory bude cez linuxovy server presmerovavat obsah zadaneho webu za adresou
+### 1. Pomocou mod rewrite a mod_proxy urobte virtualhost ktory bude cez linuxovy server presmerovavat obsah zadaneho webu.
 
-Príklad http://192.168.56.10/www.upjs.sk/ zobrazí stránku nasej skoly
+**Príklady:**
+
+- http://sme.sps.recepcia.eu/ -> http://sme.sk
+- http://upjs.sps.recepcia.eu/ -> http://upjs.sk
+- http://aktuality.sps.recepcia.eu/ -> http://aktuality.sk
+- a iné
 
 ### 2. Nastavte Virtualhost na porte 8080 a zobrazte tam pomocou proxy obsah svojej študentskej webstránky.
 
-Ak nemate osobnu stranku zvolte stranku spoluziaka.
+Ak zadam http://moja.sps.recepcia.eu:8080/ tak sa zobrazí Vaša stránka. V mojom prípade to je http://s.ics.upjs.sk/~ppekarcik.
+
+> Ak nemáte svoju stránku zobrazte http://s.ics.upjs.sk/
