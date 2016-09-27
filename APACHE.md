@@ -4,7 +4,7 @@
 
 ### Príprava prostredia
 
-Stiahnite si [image virtuálneho počítača](ApapcheSPS1.ova).
+Stiahnite si [image virtuálneho počítača](http://cdn.htsys.sk/ApapcheSPS1.ova).
 
 > Image obsahuje čistú inštaláciu Ubuntu Server 16.04 s nastavenými sietovými adaptémi NAT a HOST-ONLY.
 
