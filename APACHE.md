@@ -6,6 +6,8 @@
 
 Stiahnite si [image virtuálneho počítača](http://cdn.htsys.sk/ApapcheSPS1.ova).
 
+[PUTTY](https://the.earth.li/~sgtatham/putty/latest/x86/putty.exe)
+
 > Image obsahuje čistú inštaláciu Ubuntu Server 16.04 s nastavenými sietovými adaptémi NAT a HOST-ONLY.
 
 Údaje počítača
