@@ -4,7 +4,7 @@
 
 ### Príprava prostredia
 
-Stiahnite si [image virtuálneho počítača](http://cdn.htsys.sk/ApapcheSPS1.ova).
+Stiahnite si [image virtuálneho počítača](http://s.ics.upjs.sk/~ppekarcik/cdn/ApapcheSPS1.ova).
 
 [PUTTY](https://the.earth.li/~sgtatham/putty/latest/x86/putty.exe)
 
