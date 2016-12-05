@@ -44,7 +44,7 @@ app.controller('NameOfController', ['$scope', '$http', function($scope, $http) {
 ```
 
 Javascriptová časť html elementu. Vyššie uvedený príkaz ukazuje registráciu controlera v angular module `menoModulu`.
-˙$scope` a `$http` predstavujú nami zvolené závislosti, ktoré chceme využívať pri programovaní obslužného kódu pre html.
+`$scope` a `$http` predstavujú nami zvolené závislosti, ktoré chceme využívať pri programovaní obslužného kódu pre html.
 
 ### View
 
