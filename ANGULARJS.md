@@ -14,11 +14,11 @@ Taktiež môžeme pridávať výrazy do aplikácií.
 Je aplikácia, ktorá sa načíta pri prvom spustení a následne sa už len obnovuje jej obsah. 
 Výhodou je rýchlejšie načítavanie "bez prebliknutí", ale aj minimalizácia prenášaných dát medzi serverom a klientom.
 
-Obrazok spa.png
+![Obrazok](angularjs/spa.png)
 
 ## Two way Data binding
 
-Obrazok
+![Obrazok](angularjs/Two_Way_Data_Binding.png)
 
 ## Prvky angularu
 
