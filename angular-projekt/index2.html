@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="AplikaciaSPS">
+
+<head>
+  <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script data-require="bootstrap@3.3.7" data-semver="3.3.7" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script data-require="angularjs@1.5.8" data-semver="1.5.8" src="https://opensource.keycdn.com/angularjs/1.5.8/angular.min.js"></script>
+  
+  <script src="app.js"></script>
+</head>
+
+<body>
+  <div class="container" ng-controller="Komentare">
+    <h1>SPS1 Komentáre</h1>
+
+    <p ng-repeat="komentar in komentare">
+		<b>{{komentar.Meno}}</b> {{komentar.Komentar}}
+	</p>
+	
+	<p style="color: red;">
+		<b>{{novyKomentar.Meno}}</b> {{novyKomentar.Komentar}}
+	</p>
+
+    <hr>
+
+    <form>
+      <div class="form-group">
+        <label>Meno</label>
+        <input type="text" class="form-control" ng-model="novyKomentar.Meno" />
+      </div>
+      <div class="form-group">
+        <label>Komentár</label>
+        <textarea class="form-control" ng-model="novyKomentar.Komentar"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" ng-click="odosli();">Odošli</button>
+      <button type="reset" class="btn btn-warning">Resetuj</button>
+    </form>
+  </div>
+</body>
+
+</html>
