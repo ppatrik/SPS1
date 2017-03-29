@@ -30,28 +30,29 @@ int main()
 
 Otvorime **Properties** projektu (pravy klik na ConsoleApplication projekt alebo Alt+Enter), vyberieme Configuration: All Configurations.
 
-a) Nastavenie include priecinku
+**a) Nastavenie include priecinku**
 
 Configuration Properties > C/C++, vyberieme Additional Include Directories a pridame 
 ```
 $(OPENCV_DIR)\build\include
 ```
 
-b) Nastavenie libraties priecinku
+**b) Nastavenie libraties priecinku**
 
 Configuration Properties > Linker, vyberieme Additional Library Directories a pridame
 ```
 $(OPENCV_DIR)\build\x64\vc14\lib
 ```
 
-c) Nastavenie nazvov kniznic
+**c) Nastavenie nazvov kniznic**
 
 Configuration Properties > Linker > Input, vyberieme Additional Dependencies a pridame
 ```
 opencv_world$(OPENCV_VER).lib
 ```
 
-d) Pridanie opencv_world.dll do skopilovaneho projektu
+**d) Pridanie opencv_world.dll do skopilovaneho projektu**
+
 Configuration Properties > Build Events > Post-Build Event, vyberieme Command Line a pridame
 ```
 xcopy /y  "$(OPENCV_DIR)\build\x64\vc14\bin\opencv_world$(OPENCV_VER).dll" "$(OutDir)"
@@ -93,3 +94,5 @@ int main()
 	return 0;
 }
 ```
+
+> To be continued... (viac na seminari 30.3.2017)
