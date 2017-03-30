@@ -37,7 +37,7 @@ Configuration Properties > C/C++, vyberieme Additional Include Directories a pri
 $(OPENCV_DIR)\build\include
 ```
 
-**b) Nastavenie libraties priecinku**
+**b) Nastavenie libraries priecinku**
 
 Configuration Properties > Linker, vyberieme Additional Library Directories a pridame
 ```
@@ -68,7 +68,7 @@ opencv_world$(OPENCV_VER)d.lib
 
 **d)**
 ```
-xcopy /y  "$(OPENCV_DIR)\build\x64\vc14\bin\opencv_world$(OPENCV_VER).dll" "$(OutDir)"
+xcopy /y  "$(OPENCV_DIR)\build\x64\vc14\bin\opencv_world$(OPENCV_VER)d.dll" "$(OutDir)"
 ```
 
 > Vyskusajme spustit projekt
@@ -95,4 +95,4 @@ int main()
 }
 ```
 
-> To be continued... (viac na seminari 30.3.2017)
+> Kód: https://gist.github.com/ppatrik/fa0b36bcf0a6836a438e8fbc4c7af0a5
