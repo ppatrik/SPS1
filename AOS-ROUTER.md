@@ -306,9 +306,23 @@ sudo systemctl restart isc-dhcp-server
 
 ## Statické priradenie IP v dhcp
 
+V konfigurácii dhcp site a v jej časti `subnet -> group` vložíme konfiguráciu vo formáte
+
+```
+        host <názov pc> {
+            hardware ethernet <mac adresa vo formáte XX:XX:XX:XX:XX:XX>;
+            fixed-address <pridelená ip adresa>;
+        }
+
+```
+
 ## Výpis aktuálnych výpožičiek
 
-## Zaujímavé parametre pre dhcp server
+Na výpis výpožičiek dáme vypísať tento súbor
+
+```
+cat /var/lib/dhcp/dhcpd.leases
+```
 
 ## Statické priradenie do DNS
 
