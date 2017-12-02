@@ -286,7 +286,7 @@ Teraz doplníme do dhcp-servera ip adresu nasho DNS servera.
 V dhcp súbore pre našu sieť v časti `subnet` doplníme option domain-name-servers
 
 ```sh
-sudo nano sudo nano /etc/dhcp/sites-available/192-168-99.conf
+sudo nano /etc/dhcp/sites-available/192-168-99.conf
 ```
 
 ```
@@ -294,7 +294,11 @@ sudo nano sudo nano /etc/dhcp/sites-available/192-168-99.conf
     option domain-name-servers  192.168.99.1;
 ```
 
-Takto sme pripravili plnohodnotný linuxový router.
+Ešte reštartujeme dhcp server a máme vytvorený plnohodnotný linuxový router.
+
+```sh
+sudo systemctl restart isc-dhcp-server
+```
 
 # FAQ - Ďalšie možnosti konfigurácií
 
