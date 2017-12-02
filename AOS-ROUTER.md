@@ -326,3 +326,70 @@ cat /var/lib/dhcp/dhcpd.leases
 
 ## Statické priradenie do DNS
 
+Vytvoríme súbor **/etc/bind/db.rpz** s nasl. obsahom
+
+```sh
+sudo nano /etc/bind/db.rpz
+```
+
+```
+$TTL 60
+@            IN    SOA  localhost. root.localhost.  (
+                          2017112501   ; serial
+                          1h           ; refresh
+                          30m          ; retry
+                          1w           ; expiry
+                          30m)         ; minimum
+                   IN     NS    localhost.
+
+localhost       A   127.0.0.1
+
+www.svet.sk    A        192.168.99.1
+
+haha.svet.sk   CNAME    www.svet.sk.
+
+```
+
+Môžeme pridávať ľubovolné statické pridelenia a prepísať tak doménové mená. 
+
+> Príklad: existujú databázy zavírených doménových mien, nastavením DNS presmerovania vieme aspoň čiastočne zabezpečiť používateľov v našej sieti, ktorí používajú nás DNS server.
+
+
+Pre aplikovanie tejto vytvorenej zóny potrebujeme pridať záznam do súboru **/etc/bind/named.conf.local**
+
+```
+sudo nano /etc/bind/named.conf.local
+```
+
+```
+zone "rpz" {
+  type master;
+  file "/etc/bind/db.rpz";
+};
+```
+
+Nakoniec povolíme túto zónu v options nášho dns servera **/etc/bind/named.conf.options**
+
+```
+sudo nano /etc/bind/named.conf.options
+```
+
+```
+options {
+  // bunch
+  // of
+  // stuff
+  // please
+  // ignore
+
+  response-policy { zone "rpz"; };
+}
+```
+
+Teraz už stačí len reštartovať server a nastavenia budú aktívne v sieti
+
+```
+sudo systemctl restart bind9
+```
+
+> UPOZORNENIE Ak ste doménové meno používali, odporúčam vyprázdniť cache v lokálnom pc, pretože to sa automaticky zmení až keď vyprší jeho TTL
