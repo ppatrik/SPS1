@@ -302,8 +302,6 @@ sudo systemctl restart isc-dhcp-server
 
 # FAQ - Ďalšie možnosti konfigurácií
 
-## Firewall - Obmedzenie prístupov na porty
-
 ## Statické priradenie IP v dhcp
 
 V konfigurácii dhcp site a v jej časti `subnet -> group` vložíme konfiguráciu vo formáte
