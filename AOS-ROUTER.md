@@ -339,6 +339,61 @@ Na výpis výpožičiek dáme vypísať tento súbor
 cat /var/lib/dhcp/dhcpd.leases
 ```
 
+## Rozšírené možnosti nastavení DHCP servera
+
+* `option domain-name "example.org";` - všetky počítače v sieti búdú mať názvu v tejto doméne. **pc-name.example.org**
+* `max-lease-time 120;` - v sekundách určíme ako dlho budeme mať vyhradenú IP adresu pre používateľa.
+* `allow|deny group;` - povolenie pravidiel v {} pre danú skupinu zariadení.
+
+### Nastavenie PXE - bootovanie po sieti
+
+Potrebujeme povolit skupinu `booting` v dhcp pridaním tejto konfigurácie
+
+```
+allow booting;
+```
+
+V subnete siete pre ktorú nastavujeme PXE musíme mat nastavené options routers a domain-name-servers, na náš router.
+
+```
+  option routers 192.168.0.1;             # our router
+  option domain-name-servers 192.168.0.1; # our router, again
+```
+
+Ešte potrebujeme vybrať ktorý systém sa má pri bootovani po sieti spustiť
+
+```
+  filename "pxelinux.0"; # (this we will provide later)
+```
+
+DHCP nastavenia máme dokončené potrebujeme ešte nainštalovať TFTP server, ktorý bude počítačom poskytovať image pre spustenie po sieti.
+
+```
+sudo apt install tftpd-hpa
+```
+
+Základná konfigurácia pre tento server je v súbore **/etc/default/tftpd-hpa** ktorý by mal obsahovať toto:
+
+```
+  TFTP_USERNAME="tftp"
+  TFTP_DIRECTORY="/srv/tftp"
+  TFTP_ADDRESS="0.0.0.0:69"
+  TFTP_OPTIONS="--secure"
+```
+
+Potrebujeme vytvoriť priečinok **/srv/tftp** do ktorého vložíme image a súbor pxelinux.0, ktorý sme požadovali pri konfigurácii dhcp servera.
+
+```sh
+sudo mkdir /src/tftp
+```
+
+Po reštarte tftp a dhcp servera už v našej sieti funguje bootovanie po sieti.
+
+```
+sudo systemctl restart tftpd-hpa
+sudo systemctl restart isc-dhcp-server
+```
+
 ## Statické priradenie do DNS
 
 Vytvoríme súbor **/etc/bind/db.rpz** s nasl. obsahom
