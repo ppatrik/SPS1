@@ -49,11 +49,13 @@ sudo apt install openssh-server
 
 Konfigurácia pre ssh server sa nachádza v priečinku **/etc/ssh/**, konkrétne v súbore sshd_config. Spomenme si niekoľko dôležitých nastavení v tomto súbore
 
-* Port - Nastavenie portu na, ktorom bude náš ssh server počúvať
-* PermitRootLogin - (yes|without-password|forced-commands-only|no) povolenie prihlásenia pre používateľa root
-* PermitEmptyPasswords - Povolenie používateľov bez hesla, je defaultne zakázané aby sa predišlo zneužitiu
-* PermitOpen - Naastavenie vďaka ktorrému vieme limitovať pripojenie z len nastavených ip adries
-* PasswordAuthentication - Vieme vypnut authentifikaciu heslom a donutit pouzivatelov prihlasovat sa pomocou privátnych kľúčov
+* **Port** - Nastavenie portu na, ktorom bude náš ssh server počúvať
+* **PermitRootLogin** - (yes|without-password|forced-commands-only|no) povolenie prihlásenia pre používateľa root
+* **PermitEmptyPasswords** - Povolenie používateľov bez hesla, je defaultne zakázané aby sa predišlo zneužitiu
+* **PermitOpen** - Nastavenie vďaka ktorrému vieme limitovať pripojenie z len nastavených ip adries
+* **PasswordAuthentication** - Vieme vypnut authentifikaciu heslom a donutit pouzivatelov prihlasovat sa pomocou privátnych kľúčov
+* **Banner** - nastavenie uvítacej obrazovky.
+* **Subsystem** - ssh server okrem pripojenia a ovládania konzoly servera ponúka možnosť vytvorenia bezpečného súborového spojenia napr sftp. Pomocou subsystem vieme nastaviť napr. toto rozšírenie.
 
 ## Nastavenia routovania
 
